@@ -14,7 +14,15 @@ module.exports = {
             '2xl': '1536px'
 
         },
-        extend: {},
+        extend: {
+            colors: {
+                'primary-blue': '#4a6591',
+                'primary-blue-100': '#31395d',
+                'primary-blue-200': '#4f91c7',
+                'primary-navy': '#0f1726',
+                'primary-white': '#d0dbd9'
+            }
+        },
     },
     plugins: [],
 }

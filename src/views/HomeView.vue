@@ -1,9 +1,8 @@
 <script setup>
-import NavBar from "@/components/NavBar.vue";
 </script>
 
 <template>
-  <main>
-    <NavBar />
+  <main class="container px-5 py-5 mx-auto flex flex-row sm:max-lg:flex-col">
+
   </main>
 </template>

@@ -1,7 +1,8 @@
 <template>
   <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-primary-blue mb-3 dark:bg-slate-800">
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-      <img src="../assets/text-to-speech-svgrepo-com%20(1).svg" class="w-8 flex flex-col max-md:hidden " alt="Flowbite Logo"/>
+      <img src="../assets/text-to-speech-svgrepo-com%20(1).svg" class="w-8 flex flex-col max-md:hidden "
+           alt="Flowbite Logo"/>
       <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
         <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
           Text to Speech
@@ -19,7 +20,7 @@
       </div>
       <div v-bind:class="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
         <ul class="flex flex-col lg:flex-row list-none ml-auto">
-          <DarkMode class="px-3 py-2 flex items-center leading-snug hover:opacity-75" />
+          <DarkMode class="px-3 py-2 flex items-center leading-snug hover:opacity-75"/>
           <li class="nav-item">
             <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
             >
@@ -37,7 +38,8 @@
           </li>
           <li class="nav-item">
             <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-              <i class="fab fa-pinterest text-lg leading-lg text-white opacity-75"/><RouterLink to="/login" class="ml-2">Login</RouterLink>
+              <i class="fab fa-pinterest text-lg leading-lg text-white opacity-75"/>
+              <RouterLink to="/login" class="ml-2">Login</RouterLink>
             </a>
           </li>
         </ul>
@@ -48,9 +50,10 @@
 
 <script>
 import DarkMode from "@/components/DarkMode.vue";
+
 export default {
   name: "NavBar",
-  components:{ DarkMode },
+  components: {DarkMode},
   data() {
     return {
       showMenu: false

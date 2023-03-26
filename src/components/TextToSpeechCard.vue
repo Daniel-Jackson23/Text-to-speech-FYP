@@ -1,29 +1,31 @@
 <template>
-  <div class="">
-    <transition name="fade" v-if="isLoading">
-      <PulseLoader></PulseLoader>
-    </transition>
-    <transition name="fade" v-if="!isLoading">
-      <div class="form-container">
-        <form @submit.prevent="reading">
-          <h2>Text to Speech</h2>
-          <div class="form-group" v-if="voiceList.length">
-            <label for="voices">Select a voice</label>
-            <select class="form-control" id="voices" v-model="selectedVoice">
-              <option v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">{{ voice.name }}
-                ({{ voice.lang }})
-              </option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="your-text">Enter your text</label>
-            <input class="form-control" id="your-text" type="text" v-model="read" required />
-          </div>
-          <button type="submit" class="btn btn-success">Read</button>
-        </form>
-
-      </div>
-    </transition>
+  <div class=" container ">
+    <div
+      class="flex justify-center bg-white border border-blue-200 h-80 max-h-full rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+      <transition name="fade" v-if="isLoading">
+        <PulseLoader></PulseLoader>
+      </transition>
+      <transition name="fade" v-if="!isLoading">
+        <div class="form-container">
+          <form @submit.prevent="reading">
+            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Text to Speech</h2>
+            <div class="" v-if="voiceList.length">
+              <label for="voices">Select a voice</label>
+              <select class="" id="voices" v-model="selectedVoice">
+                <option v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">{{ voice.name }}
+                  ({{ voice.lang }})
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="your-text">Enter your text</label>
+              <input class="" id="your-text" type="text" v-model="read" required />
+            </div>
+            <button type="submit" class="btn btn-success">Read</button>
+          </form>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 

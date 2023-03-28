@@ -1,31 +1,38 @@
 <template>
-  <div class=" container ">
-    <div
-      class="flex justify-center bg-white border border-blue-200 h-80 max-h-full rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-      <transition name="fade" v-if="isLoading">
-        <PulseLoader></PulseLoader>
-      </transition>
-      <transition name="fade" v-if="!isLoading">
-        <div class="form-container">
-          <form @submit.prevent="reading">
-            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Text to Speech</h2>
-            <div class="" v-if="voiceList.length">
-              <label for="voices">Select a voice</label>
-              <select class="" id="voices" v-model="selectedVoice">
+  <div class=" container flex justify-center h-96">
+    <transition name="fade" v-if="isLoading">
+      <PulseLoader></PulseLoader>
+    </transition>
+    <transition name="fade" v-if="!isLoading">
+      <div
+          class="max-w-lg p-6 bg-white text-black border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-700 dark:text-white">
+        <form @submit.prevent="reading" class="">
+          <h2 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Text to Speech</h2>
+          <div class="" v-if="voiceList.length">
+            <div class="pb-6">
+              <label for="voices" class="block mb-2 font-bold text-md font-medium text-black dark:text-white">Select a
+                voice</label>
+              <select
+                  class="bg-gray-50 border border-gray-300 text-black text-md rounded-lg focus:ring-blue-100 focus:border-blue-100 block w-full  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="voices" v-model="selectedVoice">
                 <option v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">{{ voice.name }}
                   ({{ voice.lang }})
                 </option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="your-text">Enter your text</label>
-              <input class="" id="your-text" type="text" v-model="read" required />
-            </div>
-            <button type="submit" class="btn btn-success">Read</button>
-          </form>
-        </div>
-      </transition>
-    </div>
+          </div>
+          <div class="form-group">
+            <label for="your-text" class="block mb-2 text-sm font-medium text-black dark:text-white">Enter your
+              text</label>
+            <textarea
+                class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-blue-300 focus:ring-blue-50 focus:border-blue-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                id="your-text" placeholder="Enter text..."
+                type="text" v-model="read" required/>
+          </div>
+          <button type="submit" class="btn btn-success">Read</button>
+        </form>
+      </div>
+    </transition>
   </div>
 </template>
 

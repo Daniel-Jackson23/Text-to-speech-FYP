@@ -43,8 +43,10 @@
             />
           </div>
           <div id="rangeWrapper" class="flex justify-center py-4">
-            <label for="range" class="m-1">Pitch</label>
-              <input type="range" name="range" id="pitch" class="">
+            <label for="range"  class="m-1">Pitch</label>
+            <div class="pitchVlaue">
+              <input v-on:change="$emit => (pitchVlaue = pitch.value)" type="range" v-model="pitch" name="range" id="pitch" class="" />
+            </div>
           </div>
           <button type="submit" class="btn btn-success">Read</button>
         </form>
@@ -68,7 +70,9 @@ export default {
       selectedVoice: 0,
       synth: window.speechSynthesis,
       voiceList: [],
-      textSpeech: new window.SpeechSynthesisUtterance()
+      textSpeech: new window.SpeechSynthesisUtterance(),
+      pitch: '',
+      pitchVlaue: ''
     }
   },
   mounted() {
@@ -87,6 +91,7 @@ export default {
       }, 700)
       this.listenForSpeechEvents()
     }
+    this.textSpeech.pitch = this.pitch
   },
 
   methods: {

@@ -98,6 +98,9 @@
           >
             Resume
           </button>
+          <button value="speechStop" id="stop" @click="stop" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              Stop
+          </button>
         </div>
       </form>
     </div>
@@ -117,9 +120,9 @@ export default {
       isLoading: false,
       read: '',
       selectedVoice: 0,
-      synth: speechSynthesis,
+      synth: window.speechSynthesis,
       voiceList: [],
-      textSpeech: new SpeechSynthesisUtterance()
+      textSpeech: new window.SpeechSynthesisUtterance()
     }
   },
   mounted() {
@@ -155,7 +158,13 @@ export default {
       this.synth.speak(this.textSpeech)
     },
     pause() {
-      this.synth.pause()
+      window.speechSynthesis.pause()
+    },
+    resume() {
+      window.speechSynthesis.resume()
+    },
+    stop() {
+      window.speechSynthesis.cancel()
     }
   }
 }

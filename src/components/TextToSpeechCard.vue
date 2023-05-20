@@ -1,9 +1,5 @@
 <template>
   <div class="container flex justify-center h-96">
-    <!-- <transition name="fade" v-if="isLoading">
-      <PulseLoader></PulseLoader>
-    </transition> -->
-    <!-- <transition name="fade" v-if="!isLoading"> -->
     <div
       class="lg:w-full p-6 bg-white text-black border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-700 dark:text-white"
     >
@@ -98,8 +94,13 @@
           >
             Resume
           </button>
-          <button value="speechStop" id="stop" @click="stop" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-              Stop
+          <button
+            value="speechStop"
+            id="stop"
+            @click="stop"
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            Stop
           </button>
         </div>
       </form>
@@ -109,7 +110,6 @@
 </template>
 
 <script>
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 export default {
   name: 'TextToSpeechCard',
   components: {

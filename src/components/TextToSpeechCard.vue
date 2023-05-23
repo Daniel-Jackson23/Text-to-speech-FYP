@@ -110,14 +110,14 @@
 </template>
 
 <script>
+
 export default {
   name: 'TextToSpeechCard',
   components: {
-    // PulseLoader
+    
   },
   data() {
     return {
-      isLoading: false,
       read: '',
       selectedVoice: 0,
       synth: window.speechSynthesis,

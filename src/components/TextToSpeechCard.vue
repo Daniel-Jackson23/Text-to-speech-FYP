@@ -11,7 +11,7 @@
           <div class="pb-6">
             <label
               for="voices"
-              class="block mb-2 font-bold text-md font-medium text-black dark:text-white"
+              class="block mb-2  text-md font-medium text-black dark:text-white"
               >Select a voice</label
             >
             <select
@@ -19,7 +19,7 @@
               id="voices"
               v-model="selectedVoice"
             >
-              <option v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">
+              <option v-bind:key="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">
                 {{ voice.name }} ({{ voice.lang }})
               </option>
             </select>

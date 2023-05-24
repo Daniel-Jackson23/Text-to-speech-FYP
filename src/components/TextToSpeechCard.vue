@@ -19,7 +19,7 @@
               id="voices"
               v-model="selectedVoice"
             >
-              <option v-bind:key="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">
+              <option v-bind:key="(voice, index)" v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">
                 {{ voice.name }} ({{ voice.lang }})
               </option>
             </select>
@@ -137,7 +137,7 @@ export default {
         this.isLoading = false
       })
       this.listenForSpeechEvents()
-      this.textSpeech.rate = this.rate.value()
+      
     }
   },
   methods: {

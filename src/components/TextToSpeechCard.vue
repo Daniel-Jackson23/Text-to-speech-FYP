@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-center h-96">
     <div
-      class=" lg:w-full md:w-full  p-6 bg-white text-black border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-700 dark:text-white"
+      class="lg:w-full md:w-full p-6 bg-white text-black border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-700 dark:text-white"
     >
       <form @submit.prevent="reading" class="">
         <h2 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -9,9 +9,7 @@
         </h2>
         <div class="" v-if="voiceList.length">
           <div class="pb-6">
-            <label
-              for="voices"
-              class="block mb-2  text-md font-medium text-black dark:text-white"
+            <label for="voices" class="block mb-2 text-md font-medium text-black dark:text-white"
               >Select a voice</label
             >
             <select
@@ -19,7 +17,12 @@
               id="voices"
               v-model="selectedVoice"
             >
-              <option v-bind:key="(voice, index)" v-for="(voice, index) in voiceList" :data-lang="voice.lang" :value="index">
+              <option
+                v-bind:key="(voice, index)"
+                v-for="(voice, index) in voiceList"
+                :data-lang="voice.lang"
+                :value="index"
+              >
                 {{ voice.name }} ({{ voice.lang }})
               </option>
             </select>
@@ -38,37 +41,37 @@
             required
           />
         </div>
-        <div>
+        <div class="form-group">
           <label for="rate">Rate</label>
           <input
-            ref="rate "
-            :value="2.4"
+            ref="rate"
+            v-model="textSpeech.rate"
             type="range"
             id="rate"
-            min="0"
-            max="16"
+            min="0.1"
+            max="10"
             step="0.1"
             list="tickmarks"
           />
           <datalist id="tickmarks">
-            <option type="number" :value="1"></option>
-            <option :value="1"></option>
-            <option :value="0"></option>
-            <option :value="2"></option>
-            <option :value="3"></option>
-            <option :value="4"></option>
-            <option :value="5"></option>
-            <option :value="6"></option>
-            <option :value="7"></option>
-            <option :value="8"></option>
-            <option :value="9"></option>
-            <option :value="10"></option>
-            <option :value="11"></option>
-            <option :value="12"></option>
-            <option :value="13"></option>
-            <option :value="14"></option>
-            <option :value="15"></option>
-            <option :value="16"></option>
+            <!-- Options for tickmarks -->
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="pitch">Pitch</label>
+          <input
+            ref="pitch"
+            v-model="textSpeech.pitch"
+            type="range"
+            id="pitch"
+            min="0"
+            max="2"
+            step="0.1"
+            list="pitchmarks"
+          />
+          <datalist id="pitchmarks">
+            <!-- Options for pitchmarks -->
           </datalist>
         </div>
         <div class="flex-col lg:space-x-4 md:pt-2">
@@ -110,19 +113,18 @@
 </template>
 
 <script>
-
 export default {
   name: 'TextToSpeechCard',
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
       read: '',
       selectedVoice: 0,
       synth: window.speechSynthesis,
       voiceList: [],
-      textSpeech: new window.SpeechSynthesisUtterance()
+      textSpeech: new window.SpeechSynthesisUtterance(),
+      speed: 1, // Adjust this as per your requirement
+      pitch: 1 // Adjust this as per your requirement
     }
   },
   mounted() {
@@ -137,7 +139,16 @@ export default {
         this.isLoading = false
       })
       this.listenForSpeechEvents()
-      
+      this.textSpeech.rate = this.speed
+      this.textSpeech.pitch = this.pitch
+    }
+  },
+  watch: {
+    speed(value) {
+      this.textSpeech.rate = value
+    },
+    pitch(value) {
+      this.textSpeech.pitch = value
     }
   },
   methods: {
@@ -156,6 +167,8 @@ export default {
       this.textSpeech.text = `${this.read}`
       this.textSpeech.voice = this.voiceList[this.selectedVoice]
       this.synth.speak(this.textSpeech)
+      this.textSpeech.rate = this.speed
+      this.textSpeech.pitch = this.pitch
     },
     pause() {
       window.speechSynthesis.pause()

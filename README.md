@@ -1,4 +1,5 @@
 # text-speechv1
+Final Year Project a PWA text to speech application built with Vue js and Tailwind css. Using the web speech api to generate write text into auditory speech. 
 
 This template should help get you started developing with Vue 3 in Vite.
 
